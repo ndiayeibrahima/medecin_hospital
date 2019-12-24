@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %} {% block title %}Hello AdminController!{% endblock %} {% block body %}
+<div class="container">
+    <table class="mt-5 table ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Service</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in app.flashes("success") %}
+            <div class="alert mt-4 alert-success">{{ message }}</div>
+            {% endfor %} {% for service in services %}
+            <tr>
+                <td scope="row">{{ service.id }}</td>
+                <td>{{ service.libelle }}</td>
+                <td><a class="btn btn-primary" href="{{ path('admin.service.edit',{id:service.id}) }}">Editer</a></td>
+                <td><a class="btn btn-danger" href="{{ path('admin.service.delete',{id:service.id}) }}" onclick="return confirm('Voulez-vous vraiment le supprimer ')">Supprimer</a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <a name="" id="" class="btn btn-success" href="{{ path('admin.service.add')}}">Ajouter une service</a>
+
+</div>
+{% endblock %}
